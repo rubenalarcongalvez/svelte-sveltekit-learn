@@ -1,2 +1,14 @@
 @import 'tailwindcss/theme';
 @import 'tailwindcss/utilities';
+
+.ejemplo-style-global {
+  color: blueviolet;
+  font-weight: bold;
+
+  code {
+    padding: 5px;
+    background-color: black;
+    border-radius: 5px;
+    color: red;
+  }
+}

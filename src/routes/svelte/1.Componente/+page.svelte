@@ -1,3 +1,5 @@
+<!-- IMPORTANT: Para declarar un componente como ruta, debemos poner en su nombre +page.svelte, Dentro de una carpeta con el nombre del componente -->
+
 <!-- Podemos separar el ts, de esta forma -->
 <script lang="ts">
   /* IMPORTANT: De esta forma podemos enlazar las imágenes, que deben estar en la carpeta static, ya que es la ruta por defecto */

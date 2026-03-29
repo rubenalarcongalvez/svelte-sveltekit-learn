@@ -1,0 +1,1 @@
+<p class="ejemplo-style-global">Y si lo importamos desde aquí, desde Lib, debemos importarlo de forma especial</p>
