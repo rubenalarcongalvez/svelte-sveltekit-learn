@@ -1,4 +1,4 @@
-<!-- IMPORTANT: Para declarar un componente como ruta, debemos poner en su nombre +page.svelte, Dentro de una carpeta con el nombre del componente -->
+<!-- IMPORTANT: Para declarar un componente como ruta, debemos poner en su nombre +page.svelte, Dentro de una carpeta con el nombre del componente. Todo en la carpeta routes -->
 
 <!-- Podemos separar el ts, de esta forma -->
 <script lang="ts">

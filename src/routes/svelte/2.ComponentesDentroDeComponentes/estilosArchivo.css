@@ -1,0 +1,5 @@
+/* IMPORTANT: Podemos incluso seccionizar el componente e importar varios estilos, tanto de $lib como de la misma carpeta */
+/* Lo mismo pasa con los archivos typescript */
+p {
+  text-decoration: underline;
+}
