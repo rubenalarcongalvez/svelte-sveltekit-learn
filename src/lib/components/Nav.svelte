@@ -61,9 +61,7 @@
 
 <header>
 	<nav>
-		<section>
-			<a href={resolve('/' as Pathname)} class="logo">SvelteKit Learn</a>
-		</section>
+		<a href={resolve('/' as Pathname)} class="logo">SvelteKit Learn</a>
 		<button class="menu-btn" onclick={toggle} aria-label="Abrir menú de rutas">
 			{#if open}✕{:else}☰{/if}
 		</button>
