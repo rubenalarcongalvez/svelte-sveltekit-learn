@@ -5,6 +5,30 @@
 
 	const modules = import.meta.glob('/src/routes/**/+page.svelte');
 
+	function extractFirstPart(str: string): [number | string, string] {
+		const firstPart = str.split('.')[0];
+		const num = parseInt(firstPart, 10);
+		return isNaN(num) ? [firstPart, str] : [num, str];
+	}
+
+	function smartSort(a: string, b: string): number {
+		const [firstA, restA] = extractFirstPart(a);
+		const [firstB, restB] = extractFirstPart(b);
+
+		// Comparar primeras partes
+		if (typeof firstA === 'number' && typeof firstB === 'number') {
+			if (firstA !== firstB) return firstA - firstB;
+		} else if (typeof firstA === 'string' && typeof firstB === 'string') {
+			const cmp = firstA.localeCompare(firstB);
+			if (cmp !== 0) return cmp;
+		} else {
+			return typeof firstA === 'number' ? -1 : 1;
+		}
+
+		// Si primeras partes son iguales, comparar alfabéticamente el resto
+		return restA.localeCompare(restB);
+	}
+
 	function buildSections() {
 		const map: Record<string, { path: string; label: string }[]> = {};
 
@@ -27,15 +51,16 @@
 		return Object.entries(map)
 			.map(([key, routes]) => ({
 				title: key.charAt(0).toUpperCase() + key.slice(1),
-				routes: routes.sort((a, b) => a.label.localeCompare(b.label))
+				routes: routes.sort((a, b) => smartSort(a.label, b.label))
 			}))
-			.sort((a, b) => a.title.localeCompare(b.title));
+			.sort((a, b) => smartSort(a.title, b.title));
 	}
 
 	const sections = buildSections();
 
 	let open = $state(false);
 	let search = $state('');
+	let collapsedSections = $state<Record<string, boolean>>({});
 
 	let filtered = $derived(
 		sections
@@ -48,6 +73,25 @@
 			.filter((section) => section.routes.length > 0)
 	);
 
+	$effect(() => {
+		// Cuando search cambia, actualizar collapsedSections
+		if (search.trim()) {
+			// Si hay búsqueda y hay resultados, expandir todas las secciones
+			const newCollapsed: Record<string, boolean> = {};
+			sections.forEach((section) => {
+				newCollapsed[section.title] = false;
+			});
+			collapsedSections = newCollapsed;
+		} else {
+			// Si no hay búsqueda, cerrar todas
+			const newCollapsed: Record<string, boolean> = {};
+			sections.forEach((section) => {
+				newCollapsed[section.title] = true;
+			});
+			collapsedSections = newCollapsed;
+		}
+	});
+
 	function toggle() {
 		open = !open;
 		if (!open) search = '';
@@ -56,6 +100,10 @@
 	function close() {
 		open = false;
 		search = '';
+	}
+
+	function toggleSection(title: string) {
+		collapsedSections[title] = !collapsedSections[title];
 	}
 </script>
 
@@ -87,20 +135,31 @@
 			<div class="popup-body">
 				{#each filtered as section (section.title)}
 					<section>
-						<h2>{section.title}</h2>
-						<ul>
-							{#each section.routes as route (route.path)}
-								<li>
-									<a
-										href={resolve(route.path as Pathname)}
-										class:active={page.url.pathname === route.path}
-										onclick={close}
-									>
-										{route.label}
-									</a>
-								</li>
-							{/each}
-						</ul>
+						<h2 
+							role="button" 
+							tabindex="0"
+							onclick={() => toggleSection(section.title)}
+							onkeydown={(e) => (e.key === 'Enter' || e.key === ' ') && toggleSection(section.title)}
+							class:collapsed={collapsedSections[section.title]}
+						>
+							<span class="chevron">{collapsedSections[section.title] ? '▶' : '▼'}</span>
+							{section.title}
+						</h2>
+						{#if !collapsedSections[section.title]}
+							<ul>
+								{#each section.routes as route (route.path)}
+									<li>
+										<a
+											href={resolve(route.path as Pathname)}
+											class:active={page.url.pathname === route.path}
+											onclick={close}
+										>
+											{route.label}
+										</a>
+									</li>
+								{/each}
+							</ul>
+						{/if}
 					</section>
 				{/each}
 
@@ -224,7 +283,29 @@
 		letter-spacing: 0.1em;
 		margin: 0 0 0.5rem;
 		padding-bottom: 0.25rem;
+		padding: 0.5rem;
 		border-bottom: 1px solid #2a2a4a;
+		cursor: pointer;
+		user-select: none;
+		display: flex;
+		align-items: center;
+		gap: 0.5rem;
+		border-radius: 4px;
+		transition: background 0.2s;
+	}
+
+	h2:hover {
+		background: #2a2a4a;
+	}
+
+	h2:focus {
+		outline: 1px solid #ff6b6b;
+	}
+
+	.chevron {
+		display: inline-block;
+		font-size: 0.7rem;
+		transition: transform 0.2s;
 	}
 
 	ul {

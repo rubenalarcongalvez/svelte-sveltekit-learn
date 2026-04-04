@@ -20,6 +20,9 @@
 				<Ingrediente name={ingrediente.name} />
 				<span>. Posición: {indice + 1}</span>
 			</article>
+			<!-- IMPORTANT: Si no hay nada en la lista, podemos poner un else para gestionarlo -->
+			{:else}
+			<span>NO HAY</span>
 		{/each}
 	</section>
 
@@ -31,6 +34,9 @@
 				<Ingrediente name={ingrediente.name} />
 				<span>. Posición: {indice + 1}</span>
 			</article>
+			<!-- IMPORTANT: Si no hay nada en la lista, podemos poner un else para gestionarlo -->
+			{:else}
+			<span>NO HAY</span>
 		{/each}
 	</section>
 
