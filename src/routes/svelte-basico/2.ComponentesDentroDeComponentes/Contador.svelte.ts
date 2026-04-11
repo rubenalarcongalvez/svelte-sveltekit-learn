@@ -10,3 +10,6 @@ export class Contador {
         this.cuenta++;
     }
 }
+
+/* IMPORTANT: De esta forma, podemos conservar y compartir esto, como si fuera un service */
+export const contadorService: Contador = new Contador();

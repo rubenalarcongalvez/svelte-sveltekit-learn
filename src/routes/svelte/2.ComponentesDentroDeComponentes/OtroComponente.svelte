@@ -1,1 +1,0 @@
-<p class="ejemplo-style-global">Este párrafo no es afectado por el estilo del componente padre. Solo puede ser afectado por el estilo general (<code>layout.css</code>)</p>

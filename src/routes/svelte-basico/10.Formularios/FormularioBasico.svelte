@@ -8,7 +8,8 @@
     name: 'Pepe',
     edad: null,
     DNI: '',
-    estadoCivil: 'soltero'
+    estadoCivil: 'soltero',
+    descripcion: ''
   });
   /* IMPORTANT: No hay nada nativo de validadores, pero lo podemos gestionar nosotros mismos */
   /* Podemos tenerlos tanto juntos como separados */
@@ -54,7 +55,12 @@
     <option value="casado">Casado</option>
     <option value="soltero">Soltero</option>
   </select>
+
+  <!-- Los bind:value también valen para textarea y selects múltiples -->
+  <textarea bind:value={person.descripcion}></textarea>
 </form>
+
+<p><b>Descripción: </b>{person.descripcion}</p>
 
 {#if validadores}
   <h1>Hola {person.name || person.DNI}!</h1>
