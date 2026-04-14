@@ -14,7 +14,7 @@
   
 	/* IMPORTANT: MUY IMPORTANTE: En Svelte, las runas actualizan de forma profunda los objetos, por lo que no hay que actualizar el objeto entero como en Angular o hacer structuredClone. Simplemente cambiamos la propiedad y listo. Esto se ve muy claro con los arrays. Si lo mismo, usamos un effect, dicho effect no sentirá el cambio en Angular a no ser que usemos update pero sí en Svelte */
 	let arrayMutable: number[] = $state([1, 2]);
-  /* IMPORTANT: También podemos algo como el computed de Angular. En Svelte, se llama $derived. En base a otras runas, actualiza su valor de forma automática */
+  /* IMPORTANT: También podemos hacer algo como el computed de Angular. En Svelte, se llama $derived. En base a otras runas, actualiza su valor de forma automática */
   /* Esta es la forma inline */
   // const totalArray: number = $derived(arrayMutable.reduce((t, n) => t + n, 0));
   /* Esta es la forma de bloque (con by) */

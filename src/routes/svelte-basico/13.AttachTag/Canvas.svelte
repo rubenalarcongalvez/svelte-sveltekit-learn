@@ -11,8 +11,8 @@
 	});
 
 	function resize() {
-		canvas.width = window.innerWidth;
-		canvas.height = window.innerHeight;
+		canvas.width = canvas.clientWidth;
+		canvas.height = canvas.clientHeight;
 	}
 </script>
 

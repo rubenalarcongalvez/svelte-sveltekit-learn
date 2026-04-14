@@ -36,7 +36,7 @@
 </script>
 
 <div class="outer">
-	<svg width={w} height={h} bind:clientWidth={w} bind:clientHeight={h}>
+	<svg width={w} height={h - 0.5} bind:clientWidth={w} bind:clientHeight={h}>
 		<line y1={h} y2={h} x2={w} />
 
 		{#each ticks as tick (tick)}

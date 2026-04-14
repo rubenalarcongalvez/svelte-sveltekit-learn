@@ -1,6 +1,16 @@
 <script lang="ts">
 	/* IMPORTANT: Usamos $props para usarlo a modo de input() output() de Angular */
-	let { name = 'tabaco', version = '2.0', description = 'mentolado', website = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' } = $props(); /* Podemos poner el tipo de respuesta que queramos recibir también */
+	let {
+		name = 'tabaco', 
+		version = '2.0', 
+		description = 'mentolado', 
+		website = 'https://www.youtube.com/watch?v=dQw4w9WgXcQ' 
+	}: {
+		name?: string;
+		version?: string | number;
+		description?: string;
+		website?: string;
+	} = $props(); /* Podemos poner el tipo de respuesta que queramos recibir también */
 </script>
 
 <style>
