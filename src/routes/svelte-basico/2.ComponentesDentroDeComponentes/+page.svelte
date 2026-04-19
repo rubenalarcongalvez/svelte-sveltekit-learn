@@ -4,7 +4,7 @@
 	import OtroComponente from './OtroComponente.svelte'; // Importamos componentes normales de esta manera
 	
 	/* IMPORTANT: Podemos incluso importar varios estilos de archivos distintos, tanto de $lib como de la misma carpeta. Podemos poner el sistema de carpetas que queramos */
-	import './estilosArchivo.css'; /* IMPORTANT: Muy importante: Los estilos que importemos, también afectará a los componentes hijos, pero los estilos propios de este componente (en style), no */
+	import './estilosArchivo.css'; /* IMPORTANT: Muy importante: Los estilos que importemos, también afectará a los componentes hijos y padres, pero los estilos propios de este componente (en style), no */
 
 	/* IMPORTANT: También podemos separar los TS que queramos en otros archivos, incluso tener varios */
 	const contadorNuevo = new Contador(); // Si lo hacemos asi, estaremos simplemente creando un nuevo contador, por lo que no guardará estado entre archivos

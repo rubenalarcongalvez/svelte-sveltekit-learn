@@ -11,6 +11,7 @@
 		// IMPORTANT: class="card {flipped ? 'flipped' : ''}"
     // IMPORTANT: También podemos hacerlo de manera rápida, cada elemento del array puede ser una o varias clases
     class={["card", {flipped, "border-red-500": enRojo}, 'bg-amber-200!']} // Esto significa que si flipped se cumple, tendrá la clase 'flipped', y si se cumple enRojo, la clase border-red-500
+		// IMPORTANT: También podemos usar 'class:CLASE={CONDICION}'
 		onclick={() => flipped = !flipped}
     // Para los estilos, se puede poner de manera tradicional
     // style="transform: {flipped ? 'rotateY(0)' : ''}; --bg-1: palegoldenrod; --bg-2: black; --bg-3: goldenrod"

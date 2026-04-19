@@ -1,0 +1,1 @@
+<a href="https://svelte.dev/tutorial/svelte/each-block-bindings">Voy por aquí</a>
