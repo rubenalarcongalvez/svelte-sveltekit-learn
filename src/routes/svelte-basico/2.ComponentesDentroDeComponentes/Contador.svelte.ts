@@ -12,4 +12,4 @@ export class Contador {
 }
 
 /* IMPORTANT: De esta forma, podemos conservar y compartir esto, como si fuera un service */
-export const contadorService: Contador = new Contador();
+export const contadorService: Contador = new Contador(); // URGENT: Esto es muy peligroso si usamos SSR, por lo que no es recomendable, y en su lugar, mejor usar setContext y getContext

@@ -109,7 +109,7 @@
 
 <header>
 	<nav>
-		<a href={resolve('/' as Pathname)} class="logo">SvelteKit Learn</a>
+		<a href={resolve('/')} class="logo">SvelteKit Learn</a>
 		<button class="menu-btn" onclick={toggle} aria-label="Abrir menú de rutas">
 			{#if open}✕{:else}☰{/if}
 		</button>
@@ -150,7 +150,7 @@
 								{#each section.routes as route (route.path)}
 									<li>
 										<a
-											href={resolve(route.path as Pathname)}
+											href={route.path}
 											class:active={page.url.pathname === route.path}
 											onclick={close}
 										>

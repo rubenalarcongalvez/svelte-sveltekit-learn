@@ -6,6 +6,7 @@
 	/* IMPORTANT: Podemos incluso importar varios estilos de archivos distintos, tanto de $lib como de la misma carpeta. Podemos poner el sistema de carpetas que queramos */
 	import './estilosArchivo.css'; /* IMPORTANT: Muy importante: Los estilos que importemos, también afectará a los componentes hijos y padres, pero los estilos propios de este componente (en style), no */
 
+	/* URGENT: Cuidado con lo que exportamos. Es muy peligroso hacer estas cosas SIN setContext o getContext si usamos SSR, ya que podríamos tener vulnerabilidades de seguridad. Lo mejor es usar getContext y setContext, que lo veremos en Svelte-experto (Context) */
 	/* IMPORTANT: También podemos separar los TS que queramos en otros archivos, incluso tener varios */
 	const contadorNuevo = new Contador(); // Si lo hacemos asi, estaremos simplemente creando un nuevo contador, por lo que no guardará estado entre archivos
 </script>
